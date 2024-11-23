@@ -28,15 +28,11 @@ rm /tmp/github520_hosts
 # 读取当前的 hosts 文件
 echo "正在更新 hosts 文件..."
 if grep -q "$START_MARKER" "$HOSTS_FILE" && grep -q "$END_MARKER" "$HOSTS_FILE"; then
-    # 删除标记行和之间的内容
+    # 删除已有的 GitHub520 Host 部分
     sed -i "/$START_MARKER/,/$END_MARKER/d" "$HOSTS_FILE"
 fi
 
 # 将新的内容添加到 hosts 文件
-{
-    echo -e "\n$START_MARKER"
-    echo "$content"
-    echo -e "$END_MARKER\n"
-} >> "$HOSTS_FILE"
+echo -e "\n$content" >> "$HOSTS_FILE"
 
 echo "hosts 文件更新完成！"
