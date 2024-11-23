@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义变量
-GITHUB520_URL="https://raw.githubusercontent.com/521xueweihan/GitHub520/main/hosts"
+GITHUB520_URL="https://raw.kkgithub.com/521xueweihan/GitHub520/main/hosts"
 HOSTS_FILE="/etc/hosts"
 TMP_FILE="/tmp/github520_hosts"
 
