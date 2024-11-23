@@ -23,7 +23,11 @@ fi
 
 # 确保文件中不会重复插入内容
 echo "正在清理旧的 GitHub520 Host 部分..."
-sed -i '/# GitHub520 Host Start/,/# GitHub520 Host End/d' "$HOSTS_FILE"
+# 使用 awk 精确清理整个区域
+awk '
+/# GitHub520 Host Start/,/# GitHub520 Host End/ { next } # 跳过 GitHub520 标记块
+{ print } # 打印所有其他行
+' "$HOSTS_FILE" > "${HOSTS_FILE}.tmp" && mv "${HOSTS_FILE}.tmp" "$HOSTS_FILE"
 
 # 将新的内容追加到 hosts 文件末尾
 echo "正在插入最新的 GitHub520 Host 内容..."
