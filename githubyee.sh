@@ -3,8 +3,6 @@
 # 定义变量
 GITHUB520_URL="https://raw.githubusercontent.com/521xueweihan/GitHub520/main/hosts"
 HOSTS_FILE="/etc/hosts"
-START_MARKER="# GitHub520 Host Start"
-END_MARKER="# GitHub520 Host End"
 TMP_FILE="/tmp/github520_hosts"
 
 # 检查是否以 root 权限运行
@@ -25,12 +23,12 @@ fi
 
 # 读取当前的 hosts 文件
 echo "正在更新 hosts 文件..."
-if grep -q "$START_MARKER" "$HOSTS_FILE" && grep -q "$END_MARKER" "$HOSTS_FILE"; then
-    # 删除已有的 GitHub520 Host 部分
-    sed -i "/$START_MARKER/,/$END_MARKER/d" "$HOSTS_FILE"
+if grep -q "# GitHub520 Host Start" "$HOSTS_FILE" && grep -q "# GitHub520 Host End" "$HOSTS_FILE"; then
+    # 删除已有的 GitHub520 Host 部分（包括标记行）
+    sed -i "/# GitHub520 Host Start/,/# GitHub520 Host End/d" "$HOSTS_FILE"
 fi
 
-# 将新的内容添加到 hosts 文件
+# 将新的内容追加到 hosts 文件末尾
 cat "$TMP_FILE" >> "$HOSTS_FILE"
 
 # 删除临时文件
