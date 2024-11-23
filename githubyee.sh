@@ -12,7 +12,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # 从 GitHub 获取最新的 hosts 内容
-echo "正在从 GitHub 获取最新 hosts 内容..."
+echo "正在从 KKGithub 获取最新 hosts 内容..."
 curl -sSL "$GITHUB520_URL" -o "$TMP_FILE"
 
 # 检查下载是否成功
