@@ -21,14 +21,12 @@ if [ ! -f "$TMP_FILE" ] || [ ! -s "$TMP_FILE" ]; then
     exit 1
 fi
 
-# 读取当前的 hosts 文件
-echo "正在更新 hosts 文件..."
-if grep -q "# GitHub520 Host Start" "$HOSTS_FILE" && grep -q "# GitHub520 Host End" "$HOSTS_FILE"; then
-    # 删除已有的 GitHub520 Host 部分（包括标记行）
-    sed -i "/# GitHub520 Host Start/,/# GitHub520 Host End/d" "$HOSTS_FILE"
-fi
+# 确保文件中不会重复插入内容
+echo "正在清理旧的 GitHub520 Host 部分..."
+sed -i "/# GitHub520 Host Start/,/# GitHub520 Host End/d" "$HOSTS_FILE"
 
-# 将新的内容追加到 hosts 文件末尾
+# 追加新内容
+echo "正在插入最新的 GitHub520 Host 内容..."
 cat "$TMP_FILE" >> "$HOSTS_FILE"
 
 # 删除临时文件
