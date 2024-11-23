@@ -12,7 +12,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # 从 GitHub 获取最新的 hosts 内容
-echo "正在从 KKGithub 获取最新 hosts 内容..."
+echo "正在从 GitHub 获取最新 hosts 内容..."
 curl -sSL "$GITHUB520_URL" -o "$TMP_FILE"
 
 # 检查下载是否成功
@@ -23,9 +23,9 @@ fi
 
 # 确保文件中不会重复插入内容
 echo "正在清理旧的 GitHub520 Host 部分..."
-sed -i "/# GitHub520 Host Start/,/# GitHub520 Host End/d" "$HOSTS_FILE"
+sed -i '/# GitHub520 Host Start/,/# GitHub520 Host End/d' "$HOSTS_FILE"
 
-# 追加新内容
+# 将新的内容追加到 hosts 文件末尾
 echo "正在插入最新的 GitHub520 Host 内容..."
 cat "$TMP_FILE" >> "$HOSTS_FILE"
 
