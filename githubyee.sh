@@ -7,12 +7,12 @@ TMP_FILE="/tmp/github520_hosts"
 
 # 检查是否以 root 权限运行
 if [ "$(id -u)" -ne 0 ]; then
-    echo "请以管理员权限运行此脚本 (使用 sudo)。"
+    echo "请以管理员权限运行此脚本。"
     exit 1
 fi
 
 # 从 GitHub 获取最新的 hosts 内容
-echo "正在从 GitHub 获取最新 hosts 内容..."
+echo "正在从 KKGitHub 获取最新 hosts 内容..."
 curl -sSL "$GITHUB520_URL" -o "$TMP_FILE"
 
 # 检查下载是否成功
